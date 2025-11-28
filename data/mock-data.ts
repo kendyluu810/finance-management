@@ -1,4 +1,25 @@
-import { ArrowDownLeft, ArrowUpRight, Wallet } from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, BanknoteArrowDown, BanknoteArrowUp, PiggyBank, Wallet } from "lucide-react";
+
+export const enhancementsItems = [
+  {
+    label: "Income",
+    amount: "$14,480.24",
+    change: "+20%",
+    icon: BanknoteArrowDown,
+  },
+  {
+    label: "Expense",
+    amount: "$14,480.24",
+    change: "+14%",
+    icon: BanknoteArrowUp,
+  },
+  {
+    label: "Savings",
+    amount: "$14,480.24",
+    change: "+10%",
+    icon: PiggyBank,
+  },
+];
 
 export const cashflowData = [
   { name: "Jan", income: 4000, expense: 2400 },

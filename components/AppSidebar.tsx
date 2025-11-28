@@ -62,6 +62,7 @@ export const menuItems = [
     title: "Invoices",
     href: "/invoice",
     icon: Clipboard,
+    description: "Manage your billing and track payments.",
     label: "Main menu",
   },
   {
