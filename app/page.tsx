@@ -47,6 +47,9 @@ import {
 } from "recharts";
 import { Table } from "@/components/ui/table";
 import Link from "next/link";
+import DepositModal from "@/components/DepositModal";
+import SendModal from "@/components/SendModal";
+import AddEnhancementModal from "@/components/AddEnhancementModal";
 
 const enhancementsItems = [
   {
@@ -72,7 +75,7 @@ const HomePage = () => {
   const [range, setRange] = useState("year");
   const [txRange, setTxRange] = useState("1m");
   const [statRange, setStatRange] = useState("1m");
-  
+
   return (
     <div className="flex flex-col gap-4 py-6 pb-20">
       {/* Top rows: Balance, Enhancements, Finances scores */}
@@ -90,13 +93,15 @@ const HomePage = () => {
               <CardTitle className="text-lg font-medium text-lime-900">
                 Total Balance
               </CardTitle>
-              <Button
-                size="icon"
-                variant="secondary"
-                className="rounded-full h-8 w-8 bg-white/20 text-white hover:bg-white/30 border-none"
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
+              <DepositModal>
+                <Button
+                  size="icon"
+                  variant="secondary"
+                  className="rounded-full h-8 w-8 bg-white/20 text-white hover:bg-white/30 border-none"
+                >
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </DepositModal>
             </div>
             <div className="flex items-baseline gap-1">
               <span className="text-4xl font-bold text-lime-950">$20,670</span>
@@ -104,12 +109,16 @@ const HomePage = () => {
             </div>
           </CardHeader>
           <CardFooter className="pt-8 gap-3">
-            <Button className="flex-1 bg-white text-lime-900 hover:bg-lime-50 rounded-full font-semibold">
-              Deposit <ArrowDownLeft className="ml-2 h-4 w-4" />
-            </Button>
-            <Button className="flex-1 bg-lime-950 text-white hover:bg-lime-900 rounded-full font-semibold border-none">
-              Send <ArrowUpRight className="ml-2 h-4 w-4" />
-            </Button>
+            <DepositModal>
+              <Button className="flex-1 bg-white text-lime-900 hover:bg-lime-50 rounded-full font-semibold">
+                Deposit <ArrowDownLeft className="ml-2 h-4 w-4" />
+              </Button>
+            </DepositModal>
+            <SendModal>
+              <Button className="flex-1 bg-lime-950 text-white hover:bg-lime-900 rounded-full font-semibold border-none">
+                Send <ArrowUpRight className="ml-2 h-4 w-4" />
+              </Button>
+            </SendModal>
           </CardFooter>
         </Card>
         {/* AI Enhancements */}
@@ -118,9 +127,11 @@ const HomePage = () => {
             <CardTitle className="text-lg font-semibold">
               AI Enhancements
             </CardTitle>
-            <Button variant="outline" size="sm" className="h-8 text-xs">
-              + Add Enhancements
-            </Button>
+            <AddEnhancementModal>
+              <Button variant="outline" size="sm" className="h-8 text-xs">
+                + Add Enhancements
+              </Button>
+            </AddEnhancementModal>
           </CardHeader>
           <CardContent className="grid grid-cols-3 gap-4">
             {enhancementsItems.map((item, i) => (
@@ -174,23 +185,25 @@ const HomePage = () => {
             <div>
               <CardTitle className="text-lg">Cashflow</CardTitle>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className="text-2xl font-bold">$562,000</span>
-                <span className="text-sm text-muted-foreground">
+                <span className="text-base sm:text-2xl font-bold">
+                  $562,000
+                </span>
+                <span className="text-xs sm:text-sm text-muted-foreground">
                   Total Balance
                 </span>
               </div>
             </div>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 text-sm">
-                <span className="flex items-center gap-1">
+                <span className="flex items-center gap-1 text-xs sm:text-sm">
                   <div className="w-2 h-2 rounded-full bg-[#0f172a]" /> Income
                 </span>
-                <span className="flex items-center gap-1">
+                <span className="flex items-center gap-1 text-xs sm:text-sm">
                   <div className="w-2 h-2 rounded-full bg-[#84cc16]" /> Expense
                 </span>
               </div>
               <Select value={range} onValueChange={setRange}>
-                <SelectTrigger className="h-8 text-xs w-36">
+                <SelectTrigger className="h-8 text-xs w-24 sm:w-36">
                   <SelectValue placeholder="Select range" />
                 </SelectTrigger>
                 <SelectContent>
@@ -377,7 +390,12 @@ const HomePage = () => {
               </tbody>
             </Table>
             <div className="mt-4 flex justify-end">
-              <Button asChild variant="outline" size="sm" className="h-8 text-xs">
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="h-8 text-xs"
+              >
                 <Link href="/transaction">See more</Link>
               </Button>
             </div>

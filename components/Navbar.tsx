@@ -45,9 +45,9 @@ const Navbar = () => {
       <div className="flex gap-2 items-center">
         <SidebarTrigger />
         <div className="flex flex-col justify-center">
-          <h2 className="text-xl font-semibold">{current.title}</h2>
+          <h2 className="sm:text-xl font-semibold text-sm">{current.title}</h2>
           {current.description && (
-            <span className="text-sm font-mono text-gray-400">
+            <span className="sm:text-sm text-xs font-mono text-gray-400">
               &quot;{current.description}&quot;
             </span>
           )}
@@ -55,7 +55,7 @@ const Navbar = () => {
       </div>
       {/* right */}
       <div className="flex items-center justify-center gap-4">
-        <div className="">
+        <div className="hidden md:block w-60">
           <InputGroup>
             <InputGroupInput placeholder="Search..." />
             <InputGroupAddon>
@@ -63,7 +63,7 @@ const Navbar = () => {
             </InputGroupAddon>
           </InputGroup>
         </div>
-        <div className="flex gap-1 items-center justify-center">
+        <div className="hidden sm:flex gap-1 items-center justify-center">
           <Button variant="secondary" size="icon">
             <Settings />
           </Button>

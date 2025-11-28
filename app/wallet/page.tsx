@@ -1,5 +1,6 @@
 "use client";
 
+import AddCardModal from "@/components/AddCardModal";
 import CardTemplate from "@/components/CardTemplate";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -34,12 +35,14 @@ const WalletPage = () => {
       {/* Header Description */}
       <div className="flex justify-between items-center">
         <div className="flex flex-col">
-          <h2 className="text-2xl font-semibold">Overview / Balance Details</h2>
-          <div className="text-sm text-muted-foreground mt-1">
+          <h2 className="text-base sm:text-2xl font-semibold">
+            Overview / Balance Details
+          </h2>
+          <div className="text-xs sm:text-sm text-muted-foreground mt-1">
             Your total balance estimate in USD at 2024-09-26 12:20
           </div>
         </div>
-        <Button className="bg-lime-400 hover:bg-lime-500 text-lime-950 font-bold">
+        <Button className="bg-lime-400 hover:bg-lime-500 text-lime-950 font-bold text-xs sm:text-sm">
           <SlidersHorizontal className="w-4 h-4 mr-2" /> Manage Balance
         </Button>
       </div>
@@ -50,13 +53,15 @@ const WalletPage = () => {
         <Card className="lg:col-span-3 shadow-sm">
           <CardHeader className="pb-4 flex flex-row items-center justify-between">
             <CardTitle className="text-lg">Your Cards</CardTitle>
-            <Button
-              size="icon"
-              variant="ghost"
-              className="h-6 w-6 rounded-full border border-dashed border-gray-400"
-            >
-              <Plus className="h-3 w-3" />
-            </Button>
+            <AddCardModal>
+              <Button
+                size="icon"
+                variant="ghost"
+                className="h-6 w-6 rounded-full border border-dashed border-gray-400"
+              >
+                <Plus className="h-3 w-3" />
+              </Button>
+            </AddCardModal>
           </CardHeader>
           <CardContent className="space-y-4">
             <CardTemplate number="8764" type="Personal" isMain={true} />

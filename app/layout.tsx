@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${urbanist.variable} antialiased flex min-h-screen bg-slate-50`}
+        className={`${urbanist.variable} antialiased flex min-h-screen bg-gray-100`}
       >
         <SidebarProvider defaultOpen={defaultOpen}>
           <AppSidebar />
@@ -35,7 +35,7 @@ export default async function RootLayout({
               <Navbar />
             </div>
             <div className="flex-1 p-2 md:p-4 overflow-y-auto">
-              <div className="max-w-7xl mx-auto w-full space-x-4">
+              <div className="max-w-full mx-auto w-full space-x-4">
                 {children}
               </div>
             </div>

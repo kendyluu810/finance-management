@@ -1,5 +1,8 @@
 "use client";
 
+import AddCardModal from "@/components/AddCardModal";
+import RequestModal from "@/components/RequestModal";
+import TransferModal from "@/components/TransferModal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -48,20 +51,12 @@ const TransactionPage = () => {
 
   return (
     <div className="flex flex-col gap-6 py-2 pb-20">
-      {/* Header Description */}
-      <div className="flex flex-col">
-        {/* Title is handled by Navbar in your layout, but we add subtitle here if needed or rely on Navbar logic */}
-        <p className="text-muted-foreground">
-          &quot;View, track, and manage all expenses with ease.&quot;
-        </p>
-      </div>
-
       {/* --- Top Section --- */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Left Column: Balance, Cards, Mini Stats */}
-        <div className="lg:col-span-5 flex flex-col gap-6">
+        <div className="lg:col-span-5 flex flex-col gap-4">
           {/* Row 1: Balance & Cards */}
-          <div className="grid grid-cols-2 gap-6 h-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
             {/* Total Balance */}
             <Card className="shadow-sm flex flex-col justify-between">
               <CardHeader className="pb-2">
@@ -72,7 +67,9 @@ const TransactionPage = () => {
                   <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
                 </div>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-3xl font-bold">$1,750.82</span>
+                  <span className="text-xl sm:text-3xl font-bold">
+                    $1,750.82
+                  </span>
                   <Badge
                     variant="secondary"
                     className="text-[10px] px-1 py-0 h-5 bg-red-50 text-red-500 hover:bg-red-50"
@@ -82,20 +79,24 @@ const TransactionPage = () => {
                 </div>
               </CardHeader>
               <CardContent className="pt-0">
-                <div className="flex gap-2 mt-4">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 text-xs h-8"
-                  >
-                    <Plus className="w-3 h-3 mr-1" /> Transfer
-                  </Button>
-                  <Button
-                    size="sm"
-                    className="flex-1 text-xs h-8 bg-lime-400 hover:bg-lime-500 text-lime-950 font-semibold"
-                  >
-                    <Plus className="w-3 h-3 mr-1" /> Request
-                  </Button>
+                <div className="flex gap-1 mt-4">
+                  <TransferModal>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 text-xs h-8"
+                    >
+                      <Plus className="w-3 h-3 mr-1" /> Transfer
+                    </Button>
+                  </TransferModal>
+                  <RequestModal>
+                    <Button
+                      size="sm"
+                      className="flex-1 text-xs h-8 bg-lime-400 hover:bg-lime-500 text-lime-950 font-semibold"
+                    >
+                      <Plus className="w-3 h-3 mr-1" /> Request
+                    </Button>
+                  </RequestModal>
                 </div>
               </CardContent>
             </Card>
@@ -106,13 +107,15 @@ const TransactionPage = () => {
                 <CardTitle className="text-sm font-medium">
                   Your Cards
                 </CardTitle>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="h-6 w-6 rounded-full border border-dashed border-gray-400"
-                >
-                  <Plus className="h-3 w-3" />
-                </Button>
+                <AddCardModal>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="h-6 w-6 rounded-full border border-dashed border-gray-400"
+                  >
+                    <Plus className="h-3 w-3" />
+                  </Button>
+                </AddCardModal>
               </CardHeader>
               <CardContent className="flex-1 flex items-center justify-center p-4 pt-0">
                 {/* Dark Card Visual */}
@@ -447,7 +450,8 @@ const TransactionPage = () => {
                         Number(t.amount) > 0 ? "text-green-600" : "text-red-500"
                       }`}
                     >
-                      {Number(t.amount) > 0 ? "+" : ""}${Math.abs(Number(t.amount)).toFixed(2)}
+                      {Number(t.amount) > 0 ? "+" : ""}$
+                      {Math.abs(Number(t.amount)).toFixed(2)}
                     </td>
                     <td className="py-4 text-muted-foreground hidden lg:table-cell truncate max-w-[150px]">
                       {t.note}

@@ -33,6 +33,8 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export const menuItems = [
   {
@@ -85,8 +87,9 @@ export const menuItems = [
 const AppSidebar = () => {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
+  const pathName = usePathname();
   return (
-    <Sidebar className="bg-muted-foreground" collapsible="icon">
+    <Sidebar collapsible="icon">
       <SidebarHeader>
         {/* Logo */}
         <SidebarGroup>
@@ -175,12 +178,18 @@ const AppSidebar = () => {
                 <SidebarMenu>
                   {items.map((item) => {
                     const Icon = item.icon;
+                    const isActive = pathName === item.href;
                     return (
                       <SidebarMenuItem key={item.title}>
                         <SidebarMenuButton asChild>
                           <Link
                             href={item.href}
-                            className="text-muted-foreground gap-2"
+                            className={cn(
+                              "flex items-center gap-2",
+                              isActive
+                                ? "bg-white text-blue-900"
+                                : "text-muted-foreground"
+                            )}
                           >
                             <Icon className="w-6 h-6" />
                             <span>{item.title}</span>
