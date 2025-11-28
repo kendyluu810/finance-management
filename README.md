@@ -2,102 +2,130 @@
 
 # Finance Management
 
-Organize, track, and visualize personal or small business finances with a modern, component‑driven Next.js 15 (App Router) application.
+Organize, track, and visualize personal or small‑business finances with a modern, component‑driven Next.js (App Router) application.
 
 </div>
 
-## 1. Overview
+## Overview
 
-Finance Management is a modular web application for tracking wallets, invoices, transactions, and generating financial reports. It is built with Next.js (App Router), TypeScript, and a reusable UI component set. The goal is to provide a clean foundation that can be extended with authentication, persistence (e.g. Prisma + Postgres), and analytics.
+Finance Management is a modular web app for tracking wallets, invoices, transactions, and generating financial reports. It ships with a reusable UI system and mock data so you can prototype quickly, then evolve toward real persistence (e.g., Prisma + PostgreSQL) and auth.
 
-## 2. Core Objectives
+## Core Objectives
 
 1. Centralize financial records (invoices, transactions, wallet balances).
-2. Provide quick visual feedback via summary cards, tables, and progress indicators.
+2. Provide quick visual feedback via summary cards, charts, and tables.
 3. Offer a scalable UI pattern using composable components.
-4. Serve as a starter / learning reference for finance-related dashboards.
+4. Serve as a starter/learning reference for finance dashboards.
 
-## 3. Key Features (Advantages)
+## Tech Stack
 
-- Modular `app/` routing with isolated feature folders (`invoice`, `transaction`, `report`, `wallet`).
-- Reusable UI primitives (`components/ui/*`) for consistency and rapid iteration.
-- TypeScript for type safety and clearer contracts.
-- Mock data layer (`data/mock-data.ts`) enabling fast prototyping without a backend.
-- Layout + sidebar + navbar structure for navigational clarity.
-- Utility helpers in `lib/utils.ts` to standardize class merging and formatting.
-- Scalable styling via global CSS and component‑level encapsulation.
-
-## 4. Limitations (Disadvantages / Current Gaps)
-
-- No real persistence: data resets on reload (needs DB integration).
-- No authentication/authorization yet (add NextAuth or custom solution).
-- Reporting is static; lacks advanced analytics or export formats (CSV/PDF).
-- Accessibility & internationalization need further auditing and enhancement.
-- No test suite (unit/e2e) currently included.
-- Performance tuning (code-splitting, caching) not fully optimized for large datasets.
-
-## 5. Technology Stack
-
-- Framework: Next.js (App Router)
+- Framework: Next.js 16 (App Router)
 - Language: TypeScript
-- Styling: CSS + component styles
-- UI Components: Custom set inspired by modern design systems
+- UI: Radix UI + shadcn/ui patterns, Lucide icons
+- Styling: Tailwind CSS v4 (`@tailwindcss/postcss`), CSS variables
+- Charts: Recharts
+- Dates: date-fns, react-day-picker
 - Tooling: ESLint, PostCSS
 
-## 6. Project Structure
+## Requirements
 
-```
-app/            # Route groups & pages
-	layout.tsx    # Root layout (sidebar + navbar)
-	globals.css   # Global styles
-	invoice/      # Invoice page (extend with CRUD)
-	transaction/  # Transaction page
-	wallet/       # Wallet balances
-	report/       # Reporting dashboard
-components/     # Shared UI + composite components
-	ui/           # Atomic reusable UI primitives
-data/           # Mock data source
-hooks/          # Custom React hooks (e.g., mobile behavior)
-lib/            # Utilities (class merging, helpers)
-public/         # Static assets
-```
+- Node.js 18+ (LTS recommended)
+- npm, pnpm, yarn, or bun
 
-## 7. Getting Started
+## Getting Started
 
-Install dependencies and run the development server:
+Install dependencies and run the dev server:
 
 ```bash
 npm install
 npm run dev
-# or: yarn dev | pnpm dev | bun dev
+# or
+pnpm install
+pnpm dev
+# or
+yarn
+yarn dev
+# or
+bun install
+bun dev
 ```
 
-Visit: http://localhost:3000
+App runs at http://localhost:3000
 
-## 8. Suggested Next Enhancements
+## Scripts
 
-- Add database (Prisma + PostgreSQL) for persistence.
-- Implement authentication (NextAuth, OAuth, or JWT).
-- Integrate charting (e.g. `recharts` or `chart.js`) for richer visuals.
-- Add unit tests (Vitest / Jest) and e2e tests (Playwright / Cypress).
-- Expand reporting: export to CSV, PDF; scheduled email summaries.
-- Add dark mode theme and accessibility improvements.
+- `dev`: Start Next.js in development
+- `build`: Build for production
+- `start`: Run the production build
+- `lint`: Run ESLint
 
-## 9. Contributing
+## Project Structure
 
-Feel free to open issues or submit pull requests for improvements, refactors, or feature expansions. Keep changes modular and follow existing component patterns.
+```
+app/            # Route groups & pages
+  layout.tsx    # Root layout (sidebar + navbar)
+  globals.css   # Global styles (Tailwind v4)
+  invoice/      # Invoice page (extend with CRUD)
+  transaction/  # Transaction page
+  wallet/       # Wallet balances
+  report/       # Reporting dashboard
+components/     # Shared UI + composite components
+  ui/           # Reusable primitives (shadcn/radix)
+data/           # Mock data source
+hooks/          # Custom hooks (e.g., mobile behavior)
+lib/            # Utilities (e.g., class/merge helpers)
+public/         # Static assets
+```
 
-## 10. License
+## Features
 
-No license specified yet. If this is intended for open source distribution, add a license file (e.g., MIT) and update this section.
+- Modular `app/` routing with isolated feature folders
+- Reusable primitives in `components/ui/*` for consistent patterns
+- KPIs and charts (Recharts) for quick insights
+- Mock data (`data/mock-data.ts`) for fast prototyping
+- Layout with sidebar + navbar
 
-## 11. Disclaimer
+## UI Components (shadcn)
 
-This codebase currently uses mock data and is not production‑ready for handling sensitive financial information. Add proper security, validation, and compliance measures before deploying.
+This project follows shadcn/ui conventions with Radix UI under the hood and Tailwind v4 styling. Add more components using the CLI, e.g.:
 
-## 12. Acknowledgments
+```bash
+npx shadcn@latest add dialog label input select
+```
 
-Built on the Next.js ecosystem. Inspired by modern finance dashboards and component‑driven development practices.
+Components are generated into `components/ui` and styled via Tailwind v4 and CSS variables in `app/globals.css`.
+
+## Limitations / Gaps
+
+- No real persistence: data resets on reload (add a DB)
+- No authentication/authorization yet (consider NextAuth)
+- Reporting is basic; lacks CSV/PDF export
+- Accessibility/i18n need further auditing
+- No test suite (unit/e2e) included yet
+
+## Roadmap Ideas
+
+- Database (Prisma + PostgreSQL)
+- Authentication (NextAuth, OAuth, or JWT)
+- Richer analytics and export (CSV, PDF)
+- Tests: Vitest/Jest + Playwright/Cypress
+- Dark mode refinements and a11y improvements
+
+## Contributing
+
+Issues and PRs are welcome. Keep changes modular and follow existing component patterns.
+
+## License
+
+No license specified. If open‑sourcing, add a LICENSE file (e.g., MIT) and update this section.
+
+## Disclaimer
+
+Uses mock data and is not production‑ready for sensitive financial information. Add security, validation, and compliance before deploying.
+
+## Acknowledgments
+
+Built on the Next.js ecosystem; inspired by modern finance dashboards and component‑driven development practices.
 
 ---
 

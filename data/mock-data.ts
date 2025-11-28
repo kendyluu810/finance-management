@@ -171,3 +171,73 @@ export const walletChartData = [
   { name: "T7", value: 7200 },
   { name: "T8", value: 6800 },
 ];
+
+export const invoices = [
+  {
+    id: "INV-001",
+    client: "Acme Corp",
+    email: "billing@acme.com",
+    avatar: "https://github.com/shadcn.png",
+    date: "2024-09-25",
+    dueDate: "2024-10-01",
+    amount: 1200.0,
+    status: "Paid",
+  },
+  {
+    id: "INV-002",
+    client: "Globex Inc",
+    email: "mark@globex.com",
+    avatar: "",
+    date: "2024-09-24",
+    dueDate: "2024-10-10",
+    amount: 850.5,
+    status: "Pending",
+  },
+  {
+    id: "INV-003",
+    client: "Soylent Corp",
+    email: "hr@soylent.com",
+    avatar: "",
+    date: "2024-09-10",
+    dueDate: "2024-09-20",
+    amount: 2300.0,
+    status: "Overdue",
+  },
+  {
+    id: "INV-004",
+    client: "Initech",
+    email: "peter@initech.com",
+    avatar: "",
+    date: "2024-09-22",
+    dueDate: "2024-10-05",
+    amount: 450.0,
+    status: "Pending",
+  },
+  {
+    id: "INV-005",
+    client: "Umbrella Corp",
+    email: "alice@umbrella.com",
+    avatar: "",
+    date: "2024-09-20",
+    dueDate: "2024-09-28",
+    amount: 5000.0,
+    status: "Paid",
+  },
+];
+
+export const financialData = [
+  { name: "Jan", Income: 4000, Expense: 2400 },
+  { name: "Feb", Income: 3000, Expense: 1398 },
+  { name: "Mar", Income: 5000, Expense: 3000 },
+  { name: "Apr", Income: 4500, Expense: 2800 },
+  { name: "May", Income: 5500, Expense: 3800 },
+  { name: "Jun", Income: 6000, Expense: 4500 },
+];
+
+export const expenseCategories = [
+  { name: "Marketing", value: 1500, color: "#ef4444" }, // Red
+  { name: "Salary", value: 3500, color: "#3b82f6" }, // Blue
+  { name: "Utilities", value: 800, color: "#10b981" }, // Green
+  { name: "Rent", value: 2000, color: "#f59e0b" }, // Amber
+  { name: "Supplies", value: 1000, color: "#6366f1" }, // Indigo
+];
